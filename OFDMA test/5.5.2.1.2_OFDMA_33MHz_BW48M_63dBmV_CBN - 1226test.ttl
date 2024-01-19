@@ -1,0 +1,123 @@
+; Sample macro for Tera Term
+;  Telnet login
+
+; open Tera Term
+;command line = 'TERATERM myhost.mydomain' (telnet)
+connect '192.168.100.1:23 /nossh /T=1'
+
+; login
+		wait   "Enter Username:"
+	sendln "root"
+		wait "Enter Password:"
+	sendln "CBN"
+		wait "mainMenu>"
+
+
+
+sendln "docsis"
+	;# Wait for the prompt
+	wait "docsis>"
+
+;### Select 204MHz Upstream Band ###
+	sendln "Production"
+	       wait "Production>"
+	sendln "Calibration"
+	       wait "Calibration>"
+	sendln "Upstream_Calibration"
+	       wait "Upstream_Calibration>"
+	sendln "setSwitchBand 1"
+	       wait "Upstream_Calibration>"
+	sendln "exit"
+	       wait "Calibration>"
+	sendln "exit"
+	       wait "Production>"
+
+;### Use gain 30 and sdattn 8 1.2 ###	
+	sendln "Test"
+	       wait "Test>"
+	sendln "gain 30"
+	       wait "Test>"
+	sendln "sdattn 8 1.2"
+	       wait "Test>"
+
+;### OFDMA Sequences for 90MHz ###
+	sendln "UsOfdma"
+	       wait "UsOfdma>"
+	sendln "setDefaultUcd 0 0"
+	       wait "UsOfdma>"
+	sendln "setTXProfileClear 0"
+	       wait "UsOfdma>"
+	sendln "setTXProfileClear 1"
+	       wait "UsOfdma>"
+	sendln "setNotUsedClear 0"
+	       wait "UsOfdma>"
+	sendln "setExcludedClear 0"
+	       wait "UsOfdma>"
+	sendln "setPreambleLen 0 0xc0"
+	       wait "UsOfdma>"
+	sendln "setRandSeed 0 0x7ABCDE"
+	       wait "UsOfdma>"
+	sendln "setNir 0 0x40"
+	       wait "UsOfdma>"
+	sendln "setNfr 0 0x80"
+	       wait "UsOfdma>"
+	sendln "setSubcSpacing 0 2"
+	       wait "UsOfdma>"
+	sendln "setMiniSlot 0 5 0 11 13"
+	       wait "UsOfdma>"
+	sendln "setExcludedBand 0 0 192"
+	       wait "UsOfdma>"
+	sendln "setExcludedBand 0 1152 896"
+	       wait "UsOfdma>"
+	sendln "setCenterFreqSubC0 0 0"
+	       wait "UsOfdma>"
+	sendln "setSymbolsInFrame 0 9"
+	       wait "UsOfdma>"
+	sendln "setRollof 0 5"
+	       wait "UsOfdma>"
+	sendln "setCyclicPrefix 0 6"
+	       wait "UsOfdma>"
+	sendln "applyUcd 0"
+	       wait "UsOfdma>"
+	pause 2
+	
+	sendln "pllLockTxBurst 0 0"
+	       wait "UsOfdma>"
+	sendln "cleanTestBurst"
+	       wait "UsOfdma>"
+	sendln "testBurstUcdParams 0 0 3 0 60"
+	       wait "UsOfdma>"
+	sendln "startTestBurst 0 1 60 0 0"
+	       wait "UsOfdma>"
+	pause 5
+
+
+	
+;### Set Output Level 63dBmV  ###
+	sendln "top"
+	wait "mainMenu>"
+	sendln "docsis"
+	       wait "docsis>"
+	sendln "Production"
+	       wait "Production>"
+	sendln "Test"
+	       wait "Test>"
+	sendln "gain 63"
+	       wait "Test>"
+
+
+;### Set Output Level 63dBmV  ###	
+	pause 1
+	sendln "sdattn 8 3.6"
+	       wait "Test>"
+	
+	pause 1
+	sendln "top"
+	       wait "mainMenu>"
+	sendln "quit"
+	       wait "CLI Bye Bye"
+
+	pause 3	 
+
+;exit
+

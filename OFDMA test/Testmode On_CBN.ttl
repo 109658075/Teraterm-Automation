@@ -1,0 +1,18 @@
+timeout = 10
+connect '192.168.100.1:23 /nossh /T=1'
+pause 1
+
+wait "Enter Username:"
+sendln "root"
+wait "Enter Password:"
+sendln "CBN"
+wait "mainMenu>"
+sendln "docsis"
+wait "docsis>"
+sendln "Production"
+wait "Production>"
+sendln "Test"
+wait "Test>"
+sendln "testmode"
+wait "Test>"
+sendln "quit"

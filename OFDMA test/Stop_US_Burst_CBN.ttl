@@ -1,0 +1,36 @@
+; Sample macro for Tera Term
+;  Telnet login
+
+; open Tera Term
+;command line = 'TERATERM myhost.mydomain' (telnet)
+connect '192.168.100.1:23 /nossh /T=1'
+
+; login
+		wait   "Enter Username:"
+	sendln "root"
+		wait "Enter Password:"
+	sendln "CBN"
+		wait "mainMenu>"
+
+
+	sendln "docsis"
+		wait "docsis>"
+	sendln "Production"
+		wait "Production>"
+	sendln "Calibration"
+		wait "Calibration>"
+	sendln "Upstream_Calibration"
+		wait "Upstream_Calibration>"
+
+	sendln "upstream 0 0"
+		wait "Upstream_Calibration>"
+	sendln "upstream 1 0"
+		wait "Upstream_Calibration>"
+	sendln "upstream 2 0"
+		wait "Upstream_Calibration>"
+	sendln "upstream 3 0"
+		wait "Upstream_Calibration>"
+
+sendln  "quit"
+;exit
+

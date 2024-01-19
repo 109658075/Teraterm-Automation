@@ -1,0 +1,16 @@
+OFDMA 干擾源程式
+執行程序:
+1. 先執行 "Testmode_On_CBN.ttl"
+2. 執行 "PYteramarcoVer4.exe"
+
+注意事項:
+1. 程式執行完需要先 "重新開啟DUT" ，
+   才能再次執行以上程序。
+2. 如果需要 "中途停止程序"，
+   直接關閉程式即可。
+
+版本:
+Ver2. : 依序執行5個command
+Ver3. : 隨機執行5個command
+Ver4. : 隨機執行5個command，各執行10次
+Ver5. : for SIT 頻段
